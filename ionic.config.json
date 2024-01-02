@@ -1,0 +1,7 @@
+{
+  "name": "rastreio",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
