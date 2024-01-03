@@ -25,15 +25,24 @@ export class Tab1Page implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.getProducts();
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
+
+  getProducts() {
+    this.loadStatus = {
+      finish: false,
+      qtd: 0,
+      pass: 0
+    }
     this.storageService.getAll().then((produtos) => {
       this.products = produtos;
       this.loadStatus.qtd = this.products.length;
       this.attRastreio();
     });
-  }
-
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
   }
 
   viewProduct(produto: Product) {
@@ -55,6 +64,7 @@ export class Tab1Page implements OnInit, AfterViewInit {
         this.loadStatus.pass++;
         this.cdr.detectChanges();
         console.log(this.products);
+        console.log(this.loadStatus);
       },
       error: (error) => {
         if (error.status === 429) {
@@ -71,6 +81,7 @@ export class Tab1Page implements OnInit, AfterViewInit {
 
   // @ts-ignore
   handleRefresh(event) {
+    this.getProducts();
     setTimeout(() => {
       // Any calls to load data go here
       console.log(event);
