@@ -1,0 +1,40 @@
+<ion-header [translucent]="true" class="header">
+  <ion-button class="button" fill="clear" (click)="back()">
+    <ion-icon class="icon" slot="icon-only" name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <ion-toolbar>
+    <ion-title>{{product.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--  <ng-container *ngIf="loadStatus.pass === loadStatus.qtd;else loading">-->
+  <ion-list>
+    <ng-container *ngFor="let evento of rastreio.eventos">
+      <ion-item>
+        <div class="item-1" slot="start">
+          <div class="circle">
+            <ion-img src="../../assets/icon/truck.png" alt="Caminhão" class="icone"></ion-img>
+          </div>
+        </div>
+        <ion-label>
+          <strong>{{evento.status}}</strong>
+          <ion-note color="medium" class="ion-text-wrap">
+            {{evento.local}}
+          </ion-note>
+          <div class="city-hour">
+            <ion-note color="medium">{{evento.data}} {{evento.hora}}</ion-note>
+          </div>
+        </ion-label>
+        <!--        <div class="metadata-end-wrapper" slot="end">-->
+        <!--          <ion-icon color="medium" name="chevron-forward"></ion-icon>-->
+        <!--        </div>-->
+      </ion-item>
+
+
+    </ng-container>
+
+
+  </ion-list>
+  <!--  </ng-container>-->
+</ion-content>

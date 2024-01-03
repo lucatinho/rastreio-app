@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Adicione um novo produto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <ion-input label="Nome do produto"
+             label-placement="floating"
+             fill="outline"
+             color="primary"
+             [(ngModel)]="product.name"
+             required="true"
+             minlength="3"
+             maxlength="50">
+  </ion-input>
+  <br/>
+  <ion-input label="Codigo de rastreio"
+             label-placement="floating"
+             fill="outline"
+             [(ngModel)]="product.cod"
+             required="true"
+             minlength="13"
+             maxlength="13">
+  </ion-input>
+  <!--    <ion-input label="Nome do produto" label-placement="floating" fill="solid"></ion-input>-->
+  <!--    <br/>-->
+  <!--    <ion-input label="Codigo de rastreio" label-placement="floating" fill="solid"></ion-input>-->
+
+</ion-content>
+
+<ion-button fill="solid" class="button" (click)="salvar()">Salvar</ion-button>

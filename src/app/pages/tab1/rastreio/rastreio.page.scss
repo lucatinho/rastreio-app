@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  //height: 25px;
+  //width: 50px;
+}
+
+.item-1 {
+  margin-inline-end: 15px;
+}
+
+ion-label strong {
+  display: block;
+  max-width: calc(100% - 60px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+ion-label ion-note {
+  font-size: 0.9rem;
+}
+
+.circle {
+  background-color: #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.icone {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  left: 5px;
+  background-color: #ddd;
+}
