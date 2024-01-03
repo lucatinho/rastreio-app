@@ -26,6 +26,9 @@ export class Tab1Page implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getProducts();
+    this.rastreioService.reloading.subscribe((response) => {
+      this.getProducts();
+    });
   }
 
   ngAfterViewInit() {
@@ -63,8 +66,6 @@ export class Tab1Page implements OnInit, AfterViewInit {
         this.products[index].rastreio = response;
         this.loadStatus.pass++;
         this.cdr.detectChanges();
-        console.log(this.products);
-        console.log(this.loadStatus);
       },
       error: (error) => {
         if (error.status === 429) {
@@ -84,9 +85,8 @@ export class Tab1Page implements OnInit, AfterViewInit {
     this.getProducts();
     setTimeout(() => {
       // Any calls to load data go here
-      console.log(event);
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
 
 }

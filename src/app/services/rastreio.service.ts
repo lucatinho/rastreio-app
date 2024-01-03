@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Rastreio} from "../models/rastreio.model";
 
@@ -9,7 +9,13 @@ export class RastreioService {
   private user = 'teste';
   private token = '1abcd00b2731640e886fb41a8a9671ad1434c599dbaa0a0de9a5aa619f29a83f';
 
+  reloading: EventEmitter<boolean> = new EventEmitter();
+
   constructor(private http: HttpClient) {
+  }
+
+  reloadingEvent(actice: boolean): void {
+    this.reloading.emit(actice);
   }
 
   get(cod: string) {

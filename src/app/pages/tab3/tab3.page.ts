@@ -4,6 +4,7 @@ import {StatusProductType} from "../../enum/statusProduct-type.enum";
 import {Router} from "@angular/router";
 import {RouteUtils} from "../../shared/utils/route.utils";
 import {Product} from "../../models/product.model";
+import {RastreioService} from "../../services/rastreio.service";
 
 @Component({
   selector: 'app-tab3',
@@ -14,7 +15,7 @@ export class Tab3Page {
 
   product = new Product();
 
-  constructor(private storageService: StorageService, private router: Router) {
+  constructor(private storageService: StorageService, private router: Router, private rastreioService: RastreioService) {
   }
 
   salvar(): void {
@@ -27,6 +28,7 @@ export class Tab3Page {
   }
 
   navigate(): void {
+    this.rastreioService.reloadingEvent(true);
     this.router.navigate([RouteUtils.PAGES.PENDENTES]).then();
   }
 
