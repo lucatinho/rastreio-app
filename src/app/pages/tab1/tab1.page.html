@@ -2,40 +2,42 @@
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ng-container *ngIf="loadStatus.pass === loadStatus.qtd;else loading">
+  <ng-container *ngIf="products;else notItem">
     <ion-list>
       <ng-container *ngFor="let product of products">
-        <ion-item [button]="true" detail="false" (click)="viewProduct(product)">
-          <div class="item-1" slot="start">
-            <div class="circle">
-              <ion-img src="../../assets/icon/truck.png" alt="Caminhão" class="icone"></ion-img>
+        <ion-item-sliding>
+          <ion-item [button]="true" detail="false" (click)="viewProduct(product)">
+            <div class="item-1" slot="start">
+              <div class="circle">
+                <ion-img src="../../assets/icon/truck.png" alt="Caminhão" class="icone"></ion-img>
+              </div>
             </div>
-          </div>
-          <ion-label>
-            <strong>{{product.name}}</strong>
-            <ion-note color="medium" class="ion-text-wrap">
-              {{product.rastreio?.eventos?.shift()?.status}}
-            </ion-note>
-            <div class="city-hour">
-              <ion-note color="medium">{{product.rastreio?.eventos?.shift()?.local}}</ion-note>
-              <ion-note color="medium">{{product.rastreio?.ultimo | date:'dd/MM/yyyy hh:mm'}}</ion-note>
+            <ion-label>
+              <strong>{{product.name}}</strong>
+              <ion-note color="medium" class="ion-text-wrap">
+                {{product.cod}}
+              </ion-note>
+              <div class="city-hour">
+                <ion-note color="medium">{{product.data | date:'dd/MM hh:mm'}}</ion-note>
+              </div>
+            </ion-label>
+            <div class="metadata-end-wrapper" slot="end">
+              <ion-icon color="medium" name="chevron-forward"></ion-icon>
             </div>
-          </ion-label>
-          <div class="metadata-end-wrapper" slot="end">
-            <ion-icon color="medium" name="chevron-forward"></ion-icon>
-          </div>
-        </ion-item>
-
-
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="delete(product)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
       </ng-container>
-
-
     </ion-list>
   </ng-container>
-  <ng-template #loading>
+  <ng-template #notItem>
     <ion-content [fullscreen]="true">
       <div id="container">
-        <strong>Carregando...</strong>
+        <strong>Cadastre um novo item ;)</strong>
       </div>
     </ion-content>
   </ng-template>
