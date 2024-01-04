@@ -57,6 +57,7 @@ export class StorageService {
       if (produto) {
         const index = produtos.indexOf(produto);
         if (index !== -1) {
+          produtos.splice(index, 1);
           return this._storage?.set(this.key, produtos);
         }
       }
