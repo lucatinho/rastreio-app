@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseApi: 'https://rastreio-api-lovat.vercel.app',
 };

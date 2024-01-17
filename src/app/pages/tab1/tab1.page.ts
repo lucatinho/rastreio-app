@@ -37,11 +37,12 @@ export class Tab1Page implements OnInit {
 
 
   status(product: Product) {
-    return product.rastreio?.eventos[0]?.status;
+    return product.rastreio?.[0].status;
   }
 
   local(product: Product) {
-    return product.rastreio?.eventos?.shift()?.local;
+    // shift
+    return product.rastreio?.[0].local;
   }
 
   delete(product: Product): void {

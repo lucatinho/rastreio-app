@@ -8,9 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="rastreio?.ultimo;else loading">
+  <ng-container *ngIf="!loading;else tloading">
     <ion-list>
-      <ng-container *ngFor="let evento of rastreio.eventos">
+      <ng-container *ngFor="let evento of eventos">
         <ion-item>
           <div class="item-1" slot="start">
             <div class="circle">
@@ -19,19 +19,19 @@
           </div>
           <ion-label>
             <strong>{{evento.status}}</strong>
-            <ion-note color="medium" class="ion-text-wrap">
-              {{evento.local}}
-            </ion-note>
-            <div class="city-hour">
-              <ion-note color="medium">{{evento.data}} {{evento.hora}}</ion-note>
-            </div>
+<!--            <ion-note color="medium" class="ion-text-wrap">-->
+<!--              {{evento?.local}}-->
+<!--            </ion-note>-->
+<!--            <div class="city-hour">-->
+<!--              <ion-note color="medium">{{evento.data}}</ion-note>-->
+<!--            </div>-->
           </ion-label>
         </ion-item>
       </ng-container>
     </ion-list>
   </ng-container>
 
-  <ng-template #loading>
+  <ng-template #tloading>
     <ion-content [fullscreen]="true">
       <div id="container">
         <strong>Carregando...</strong>
