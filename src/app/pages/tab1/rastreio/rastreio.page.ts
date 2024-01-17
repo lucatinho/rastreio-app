@@ -45,33 +45,7 @@ export class RastreioPage implements OnInit {
   private reqRastreio(produto: Product) {
     this.rastreioService.get(produto.cod).subscribe({
       next: (response) => {
-
-        const html = document.createElement('div');
-        html.innerHTML = response.html;
-
-        const writingLinks: HTMLAnchorElement[] = Array.from(
-          html.querySelectorAll('.linha_status'),
-        );
-        writingLinks.map(link => {
-          const arrayHtml = Array.from(link.children);
-
-          let eventObj: Evento = new Evento();
-          arrayHtml.forEach((elementHtml) => {
-            if (elementHtml.textContent?.match('Status')) {
-              eventObj.status = elementHtml.textContent.replace('Status: ', '');
-            } else if (elementHtml.textContent?.match('Data')) {
-              eventObj.data = elementHtml.textContent.replace('Data  : ', '').replace('| Hora: ', '');
-            } else if (elementHtml.textContent?.match('Local')) {
-              eventObj.local = elementHtml.textContent.replace('Local: ', '');
-            } else if (elementHtml.textContent?.match('Origem')) {
-              eventObj.origem = elementHtml.textContent.replace('Origem: ', '');
-            } else if (elementHtml.textContent?.match('Destino')) {
-              eventObj.destino = elementHtml.textContent.replace('Destino: ', '');
-            }
-          });
-          this.eventos.push(eventObj);
-        });
-
+        this.eventos = response;
         this.loading = false;
       },
       error: (error) => {
@@ -82,6 +56,15 @@ export class RastreioPage implements OnInit {
 
   back(): void {
     this.router.navigate([RouteUtils.PAGES.PENDENTES]).then();
+  }
+
+  // @ts-ignore
+  handleRefresh(event) {
+    this.reqRastreio(this.product);
+    this.loading = true;
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
   }
 
 }

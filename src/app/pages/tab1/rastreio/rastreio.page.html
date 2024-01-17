@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ng-container *ngIf="!loading;else tloading">
     <ion-list>
       <ng-container *ngFor="let evento of eventos">
@@ -18,13 +21,19 @@
             </div>
           </div>
           <ion-label>
-            <strong>{{evento.status}}</strong>
-<!--            <ion-note color="medium" class="ion-text-wrap">-->
-<!--              {{evento?.local}}-->
-<!--            </ion-note>-->
-<!--            <div class="city-hour">-->
-<!--              <ion-note color="medium">{{evento.data}}</ion-note>-->
-<!--            </div>-->
+            <strong class="info">{{evento.status}}</strong>
+            <ion-note color="medium" class="ion-text-wrap">
+              <div class="info">{{evento?.local}}</div>
+              <ng-container *ngIf="evento.origem">
+                <div class="info">de {{evento.origem}}</div>
+              </ng-container>
+              <ng-container *ngIf="evento.destino">
+                <div class="info">para {{evento.destino}}</div>
+              </ng-container>
+            </ion-note>
+            <div class="city-hour">
+              <ion-note color="medium">{{evento.data}}</ion-note>
+            </div>
           </ion-label>
         </ion-item>
       </ng-container>
